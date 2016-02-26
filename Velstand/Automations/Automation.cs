@@ -25,8 +25,15 @@ namespace Velstand.Automations
         /// <param name="node"></param>
         public static void SavedAutoOparations(IContent node){
             // ブログのフォルダを自動作成する
+
+            if (node.HasProperty("releaseDate")){
+
+         
+
             var blogCreator = new BlogCreator(node);
             blogCreator.CreateHolder();
+
+            }
         }
 
         /// <summary>
@@ -35,7 +42,11 @@ namespace Velstand.Automations
         /// <param name="node"></param>
         public static void PublishingAutoOparations(IContent node)
         {
-            node.SetValue(VelstandProperty.ReleaseDate, ContentCreator.ReleaseDate(node).ToString());
+            if (node.HasProperty("releaseDate"))
+            {
+                node.SetValue(VelstandProperty.ReleaseDate, ContentCreator.ReleaseDate(node).ToString());
+
+            }
         }
 
         /// <summary>
